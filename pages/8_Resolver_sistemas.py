@@ -46,6 +46,7 @@ REPORT_STARTS = {
 
 st.title("Comparar métodos")
 st.write("Elige un sistema y un punto inicial. Los tres métodos empiezan desde el mismo punto.")
+st.page_link("pages/0_Inicio.py", label="Ver resultados principales del informe", icon="📊")
 
 system_name = st.selectbox("1. Sistema", list(SYSTEMS), key="simple_system")
 system = SYSTEMS[system_name]

@@ -8,11 +8,11 @@ st.title("Laboratorio de Métodos Numéricos")
 st.subheader("Resolver sistemas no lineales y comparar métodos iterativos")
 if not presentation:
     st.markdown(
-        "Escribe dos funciones o elige un ejemplo para comparar NR, Newton amortiguado y W4 "
-        "desde el mismo punto inicial. También puedes explorar los resultados del proyecto sobre "
-        "**F₁ = x² + y² − 4, F₂ = x²y − 1**, en la región [−5, 5]²."
+        "Elige el sistema del informe o uno de los ejemplos y compara NR, Newton amortiguado y W4 "
+        "desde el mismo punto inicial. El sistema del proyecto es "
+        "**F₁ = x² + y² − 4, F₂ = x²y − 1**, estudiado en la región [−5, 5]²."
     )
-    st.page_link("pages/8_Resolver_sistemas.py", label="Abrir el solucionador de sistemas", icon="🧮", width="stretch")
+    st.page_link("pages/8_Resolver_sistemas.py", label="Comparar métodos", icon="🧮", width="stretch")
     st.markdown("### Valores de referencia del informe")
     cards = st.columns(3)
     for col, method in zip(cards, ("W4", "NR", "DN")):

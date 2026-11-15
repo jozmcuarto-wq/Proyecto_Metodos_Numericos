@@ -2,13 +2,11 @@
 
 Aplicación multipágina para resolver sistemas no lineales y comparar Newton-Raphson (NR), Newton amortiguado (DN) y W4.
 
-## Solucionador de sistemas
+## Comparar métodos
 
-La página **Resolver sistemas** permite elegir el sistema del proyecto, un ejemplo polinómico, uno trigonométrico o escribir dos funciones propias de `x` e `y`. Los tres métodos parten del mismo punto, comparten la tolerancia residual y muestran estado, iteraciones, residuo, trayectorias, curvas de nivel y archivos CSV descargables.
+La pantalla principal presenta tres sistemas listos para usar: el sistema del informe, un ejemplo polinómico y uno trigonométrico. Elige el punto inicial (P1, P2, P3 o coordenadas propias para el sistema del informe) y compara estado, iteraciones, punto final y residuo en una tabla y una gráfica.
 
-Se aceptan operaciones `+`, `-`, `*`, `/`, `^` y `**`; funciones `sin`, `cos`, `tan`, `asin`/`arcsin`, `acos`/`arccos`, `atan`/`arctan`, `sinh`, `cosh`, `tanh`, `exp`, `log`, `sqrt`, `abs`; y constantes `pi` y `e`. Las expresiones se interpretan con una lista limitada de operaciones matemáticas; no se ejecuta Python arbitrario.
-
-Para admitir sistemas ingresados por el usuario, esta página aproxima el Jacobiano con diferencias finitas centradas. Sus residuos e iteraciones sirven para comparar los métodos en un mismo problema. Sus tiempos no se comparan con el experimento del informe, cuya implementación usa un Jacobiano analítico y cálculo vectorizado.
+El sistema del informe usa el núcleo numérico validado del proyecto, con Jacobiano analítico. Los ejemplos adicionales usan un Jacobiano aproximado por diferencias finitas y sirven para explorar los métodos; sus resultados no son cifras del informe.
 
 ## Análisis del experimento del informe
 
@@ -16,7 +14,7 @@ Las páginas **Cuencas y cobertura**, **Superposición de fallos**, **Trayectori
 
 `F1(x,y) = x^2 + y^2 - 4`, `F2(x,y) = x^2*y - 1`.
 
-Los parámetros de la malla se comparten en la barra lateral de estas páginas. La configuración de referencia usa una malla inclusiva de 400 × 400 sobre `[-5, 5]^2`, `alpha = 0.5`, `Delta tau = 0.5`, `p0 = (0, 0)`, tolerancia residual `1e-6` y máximo de 1000 iteraciones.
+La configuración de referencia usa una malla inclusiva de 400 × 400 sobre `[-5, 5]^2`, `alpha = 0.5`, `Delta tau = 0.5`, `p0 = (0, 0)`, tolerancia residual `1e-6` y máximo de 1000 iteraciones.
 
 ## Ejecutar
 
@@ -28,10 +26,10 @@ python scripts/precompute.py
 python -m streamlit run app/app.py
 ```
 
-La caché `data/baseline_400.npz` contiene los estados, iteraciones y distancias singulares para la configuración del informe. Si se regenera, los conteos se validan con:
+La caché `data/baseline_400.npz` contiene estados, iteraciones y distancias singulares para la configuración del informe. Si se regenera, los conteos se validan con:
 
 ```powershell
 python -m pytest -q app/tests
 ```
 
-En Streamlit Community Cloud, selecciona `app/app.py` como archivo principal si mantienes esta estructura anidada. Si publicas la app aplanada en la raíz, incluye también `general_solver.py` en la raíz y la nueva página en `pages/8_Resolver_sistemas.py`, junto con las versiones actualizadas de `app.py`, `ui.py` y `pages/0_Inicio.py`.
+En Streamlit Community Cloud, selecciona `app/app.py` como archivo principal si mantienes esta estructura anidada. Si publicas la app aplanada en la raíz, incluye también `general_solver.py` en la raíz y las versiones actualizadas de `app.py`, `ui.py`, `pages/0_Inicio.py` y `pages/8_Resolver_sistemas.py`.

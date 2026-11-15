@@ -45,7 +45,7 @@ def test_all_registered_pages_render_without_streamlit_errors():
 
         assert not app.exception, f"{filename}: {[error.message for error in app.exception]}"
         assert not app.warning, f"{filename}: {[warning.value for warning in app.warning]}"
-        if filename not in {"0_Inicio.py", "8_Resolver_sistemas.py"}:
+        if filename != "0_Inicio.py":
             assert app.get("plotly_chart"), f"{filename}: expected at least one interactive chart"
 
 
